@@ -1,0 +1,58 @@
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@IM=ibus
+export QT_IM_MODULE=ibus
+export PATH=$PATH:/usr/sbin
+export PS1='[\t]\u:\w\$ '
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+
+urxvt -fg white -bg black -sb
+openbox/autostart
+xgamma -gamma .8
+xrandr --output eDP-1 --brightness .8
+xinput set-prop 12 316 1
+syndaemon -i 1 -d
+xset m 0.1
+xset dpms 0 0 0
+xset s off
+ibus-daemon --xim -d &
+emacs -fs -fg white -bg black &
+firefox &
+
+xrandr | grep " connected" | cut -f1 -d " "
+xrandr --output eDP-1 --brightness 0.6
+fb:2345:wait:/usr/sbin/fbset -a 1024x768-75
+/usr/bin/xcalib -invert -alter
+xdotool search --sync --onlyvisible --class "Firefox" windowactivate key F11
+xinput list
+xinput list-props 12
+xinput set-prop 12 276 1
+
+sudo apt install adb
+sudo chmod a+rx 51-android.rules
+vi ~/.android/adb_usb.ini 创建 adb_usb.ini，把刚才找到的设备的idVendor添加进去
+sudo service udev restart
+sudo adb kill-server
+sudo adb start-server
+adb devices
+sudo apt-get install jmtpfs libfuse-dev libmad0-dev
+sudo mkdir /media/mtp
+sudo chmod 775 /media/mtp
+sudo jmtpfs -o allow_other /media/mtp
+
+echo 300 | sudo tee -a /sys/class/backlight/intel_backlight/brightness
+UUID=16E404CAE404AE55 /c              ntfs    defaults,umask=007,gid=46 0       0
+nmcli device wifi
+nmcli device wifi connect ChinaNGB-YdLmtU password awhu2373
+im-switch -s ibus
+/etc/default/keyboard or in /etc/default/console-setup
+XKBOPTIONS="ctrl:swapcaps"
+sudo dpkg-reconfigure -phigh console-setup
+(dumpkeys | grep keymaps; echo "keycode 29 = Caps_Lock";echo "keycode 58 = Control") | loadkeys
+~/.emacs.d/rime/build/luna_pinyin.schema.yaml reset: 1
+~/.config/ibus/rime/build/luna_pinyin_simp.schema.yaml
+/home/r/.config/JetBrains/IntelliJIdea2021.2/idea64.vmoptions
+-javaagent:/home/r/w/FineAgent/FineAgent.jar
+131.253.33.219 edge.microsoft.com
+131.253.33.219 msedgeextensions.sf.tlu.dl.delivery.mp.microsoft.com
+
+sudo apt install bsdmainutils net-tools gnome-disk-utility xinput gnome-calculator gnome-keyring npm openjdk-8-jdk python3-doc python3-pip gdb gdb-doc gcc-doc glibc-doc emacs-common-non-dfsg audacious hexchat gimp gimp-help-en mplayer vlc make-doc iotop htop nmap whois ncat p7zip-full rar unrar zip unzip evince calibre wget git git-doc lm-sensors thunderbird chromium blueman bc apt-file virtualbox virtualbox-guest-additions-iso

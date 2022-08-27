@@ -1,0 +1,20 @@
+#Tapping Enabled
+#xinput set-prop 12 341 1
+
+#touchpad Accel Speed
+#xinput set-prop 12 329 0.8
+
+#touchpad Coordinate Transformation Matrix
+#xinput set-prop 12 181  0.3 0 0 0 0.3 0 0 0 1
+
+#Logitech Wireless Mouse Accel Profile Enabled
+#xinput set-prop 9 329 -0.5
+
+xgamma -gamma .8
+xrandr --output VGA-1 --brightness .8
+#syndaemon -i 1 -d
+xset dpms 0 0 0
+xset s off
+ibus-daemon --xim -d &
+emacs -fs -fg white -bg black &
+firefox &
